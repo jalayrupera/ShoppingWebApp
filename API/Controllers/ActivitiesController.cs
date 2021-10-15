@@ -1,5 +1,7 @@
-﻿using API.Models;
+﻿using API.Application.Activities;
+using API.Models;
 using API.Models.Database_Context;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,23 +16,23 @@ namespace API.Controllers
     [ApiController]
     public class ActivitiesController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly IMediator mediator;
 
-        public ActivitiesController(DataContext context)
+        public ActivitiesController(IMediator mediator)
         {
-            this.context = context;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
-            return await context.Activities.ToListAsync();
+            return await mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivityById(Guid id)
         {
-            return await context.Activities.FirstOrDefaultAsync(x => x.Id == id);
+            return Ok();
         }
 
 
