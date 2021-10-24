@@ -42,7 +42,7 @@ function ActivityForm({activity: selectedActivity, closeForm, createOrEdit, subm
                 <Form.Input placeholder='City' value={activity.city} name='city' onChange={handleInputChange}/>
                 <Form.Input placeholder='Venue' value={activity.venue} name='venue' onChange={handleInputChange}/>
                 <Button loading={submitting} floated='right' positive type='submit' content='Submit'/>
-                <Button floated='right' onClick={closeForm}  type='button' content='Cancel'/>
+                <Button  floated='right' onClick={closeForm}  type='button' content='Cancel'/>
             </Form>
         </Segment>
     )
